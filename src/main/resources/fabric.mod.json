@@ -1,0 +1,40 @@
+ {
+	"schemaVersion": 1,
+	"id": "projectile-alert",
+	"version": "${version}",
+	"name": "Projectile Alert",
+	"description": "Be aware of any projectile that is about to get you)",
+	"authors": [
+		"MrBushy"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/projectile-alert/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "com.mrbushy.ProjectileAlert"
+		],
+		"client": [
+			"com.mrbushy.ProjectileAlertClient"
+		],
+		"fabric-datagen": [
+          "com.mrbushy.ProjectileAlertDataGenerator"
+		]
+	},
+	"mixins": [
+		"projectile-alert.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.21",
+		"minecraft": "~1.19.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

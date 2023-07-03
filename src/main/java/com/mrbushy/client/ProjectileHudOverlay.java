@@ -3,11 +3,16 @@ package com.mrbushy.client;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrbushy.ProjectileAlert;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.block.AnvilBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.text.Text;
@@ -49,6 +54,13 @@ public class ProjectileHudOverlay implements HudRenderCallback {
                     if (intersects) {
                         ProjectileAlert.DANGER_STATUS = true;
                     }
+                }
+            }
+
+            Box anvilDetectionBox = new Box(client.player.getX() - 1, client.player.getY(), client.player.getZ() - 1, client.player.getX() + 1, client.player.getY() + 100, client.player.getZ() + 1);
+            for (FallingBlockEntity entity : client.player.getWorld().getEntitiesByType(EntityType.FALLING_BLOCK, anvilDetectionBox, EntityPredicates.VALID_ENTITY)){
+                if (entity.getBlockState().isOf(Blocks.ANVIL) || entity.getBlockState().isOf(Blocks.CHIPPED_ANVIL) || entity.getBlockState().isOf(Blocks.DAMAGED_ANVIL)){
+                    ProjectileAlert.DANGER_STATUS = true;
                 }
             }
 

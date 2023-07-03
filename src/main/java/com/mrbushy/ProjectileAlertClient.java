@@ -8,6 +8,5 @@ public class ProjectileAlertClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         HudRenderCallback.EVENT.register(new ProjectileHudOverlay());
-
     }
 }
